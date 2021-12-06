@@ -2,6 +2,7 @@ package edu.seu;
 
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import edu.seu.entity.User;
 import edu.seu.service.UserService;
 import org.junit.jupiter.api.Test;
@@ -20,4 +21,11 @@ class VueblogApplicationTests {
         System.out.println(SecureUtil.md5(one.getPassword()));
     }
 
+    @Test
+    void test02(){
+        User user = new User();
+        user.setId(1L);
+        user.setPassword("11111111");
+        userService.updatePassword(SecureUtil.md5(user.getPassword()), user.getId());
+    }
 }

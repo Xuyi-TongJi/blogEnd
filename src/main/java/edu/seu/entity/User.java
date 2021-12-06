@@ -8,6 +8,7 @@ import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -31,6 +32,7 @@ public class User implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+    @NotBlank(message = "用户名不能为空")
     private String username;
 
     private String avatar;
@@ -39,11 +41,14 @@ public class User implements Serializable {
     @Email(message = "邮箱格式不正确")
     private String email;
 
+    @NotBlank(message = "密码不能为空")
     private String password;
 
     private Integer status;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime created;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDateTime lastLogin;
 }
